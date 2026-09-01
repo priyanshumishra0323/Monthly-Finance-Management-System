@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Ledger - Monthly Finance V2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="toast-container" id="toast-container"></div>
+
+  <div class="container">
+
+    <!-- Month Navigation -->
+    <div class="month-navigator">
+      <button id="btn-prev-month" type="button">◀ Previous</button>
+      <h2 id="current-month-display">September 2026</h2>
+      <button id="btn-next-month" type="button">Next ▶</button>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>Income (This Month)</h3>
+        <h2 id="total-income" class="text-success">₹0</h2>
+      </div>
+
+      <div class="summary-card">
+        <h3>Expenses (This Month)</h3>
+        <h2 id="total-expense" class="text-danger">₹0</h2>
+      </div>
+
+      <div class="summary-card">
+        <h3>Net Balance</h3>
+        <h2 id="net-balance" class="text-primary">₹0</h2>
+      </div>
+    </div>
+
+    <!-- Budget -->
+    <div class="budget-card">
+      <div class="budget-top">
+        <h3>Monthly Budget</h3>
+        <strong id="budget-status">No budget set</strong>
+      </div>
+
+      <div class="budget-input-row">
+        <input
+          type="number"
+          id="budget-input"
+          min="1"
+          step="1"
+          placeholder="Set budget, e.g. ₹30000"
+        >
+        <button id="save-budget-btn" type="button">Save Budget</button>
+      </div>
+
+      <div class="budget-progress-bg">
+        <div id="budget-progress-fill" class="budget-progress-fill"></div>
+      </div>
+
+      <div class="budget-info">
+        <span id="budget-spent">Spent: ₹0</span>
+        <span id="budget-remaining">Remaining: ₹0</span>
+      </div>
+
+      <div id="budget-warning" class="budget-warning"></div>
+    </div>
+
+    <!-- Main -->
+    <div class="main-grid">
+
+      <!-- Form -->
+      <div class="card">
+        <h3 id="form-title">
+          Add Transaction for
+          <span id="form-month-label" style="color:var(--primary);"></span>
+        </h3>
+
+        <form id="tx-form">
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type">
+              <option value="income">Income (+)</option>
+              <option value="expense">Expense (-)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <optgroup label="Income" id="income-cats">
+                <option value="Salary">Salary</option>
+                <option value="Freelance">Freelance / Business</option>
+                <option value="Other Income">Other Income</option>
+              </optgroup>
+
+              <optgroup label="Expenses" id="expense-cats" style="display:none;">
+                <option value="Housing">Housing & Rent</option>
+                <option value="Food">Food & Groceries</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping & Leisure</option>
+                <option value="Utilities">Utilities & Bills</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>
+                <option value="Other Expense">Other Expense</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input
+              type="text"
+              id="desc"
+              maxlength="100"
+              placeholder="e.g., September Salary"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount (₹)</label>
+            <input
+              type="number"
+              id="amount"
+              min="1"
+              step="0.01"
+              placeholder="0"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Add Transaction
+          </button>
+
+          <button type="button" class="btn-cancel" id="cancel-edit-btn">
+            Cancel Edit
+          </button>
+        </form>
+
+        <button id="undo-btn" class="btn-undo" disabled type="button">
+          Undo Last Action
+        </button>
+      </div>
+
+      <!-- Dashboard Data -->
+      <div class="right-panel">
+
+        <!-- Category -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h3>Category Breakdown</h3>
+          <div id="category-list"></div>
+        </div>
+
+        <!-- Transactions -->
+        <div class="card">
+          <h3>Transaction History</h3>
+
+          <div class="filter-row">
+            <input
+              type="search"
+              id="search-input"
+              placeholder="🔍 Search description or category..."
+            >
+
+            <select id="type-filter">
+              <option value="all">All Types</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+
+            <select id="category-filter">
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+
+          <div id="transaction-count" style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.4rem;"></div>
+          <div id="transaction-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
