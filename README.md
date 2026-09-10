@@ -179,16 +179,6 @@ Each month's transactions are stored inside an Array.
 
 <hr>
 
-<h2>Author</h2>
-
-<p>
-Name: Vivek Jiyalal Chaurasiya<br>
-Course: SY B.Sc. Computer Science<br>
-Project: Smart Ledger - Monthly Finance Tracker
-</p>
-
-<hr>
-
 <h2>License</h2>
 
 <p>
