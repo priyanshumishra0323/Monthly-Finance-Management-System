@@ -129,8 +129,9 @@
 
         this.undoStack.push({
           action: "DELETE",
-          monthKey: ledger.transactions[0]?.monthKey || this.getMonthKey(this.currentDate),
-          data: deleted
+          monthKey: deleted.monthKey,
+          data: deleted,
+          index: index
         });
 
         this.saveData();
@@ -157,7 +158,11 @@
           const ledger = this.monthlyLedgers.get(last.data.monthKey);
 
           if (ledger) {
-            ledger.transactions.push(last.data);
+            if (last.index !== undefined) {
+              ledger.transactions.splice(last.index, 0, last.data);
+            } else {
+              ledger.transactions.push(last.data);
+            }
             this.recalculateLedger(ledger);
           }
         }
@@ -291,7 +296,6 @@
 
     const undoBtn = document.getElementById("undo-btn");
     const monthDisplay = document.getElementById("current-month-display");
-    const formMonthLabel = document.getElementById("form-month-label");
 
     const btnPrev = document.getElementById("btn-prev-month");
     const btnNext = document.getElementById("btn-next-month");
@@ -434,7 +438,14 @@
       incomeCats.style.display = "block";
       expenseCats.style.display = "none";
       categorySelect.value = "Salary";
-      dateInput.value = todayISO();
+      const currentMonthKey = engine.getMonthKey(engine.currentDate);
+      const today = todayISO();
+      
+      if (today.slice(0, 7) === currentMonthKey) {
+        dateInput.value = today;
+      } else {
+        dateInput.value = `${currentMonthKey}-01`;
+      }
 
       submitBtn.textContent = "Add Transaction";
       cancelEditBtn.style.display = "none";
