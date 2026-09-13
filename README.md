@@ -6,8 +6,6 @@
 
 <h1>Monthly Finance Tracker</h1>
 
-<hr>
-
 <h2>Project Description</h2>
 
 <p>
@@ -15,8 +13,6 @@ Monthly Finance Tracker is a web-based personal finance management application d
 It helps users manage their monthly income and expenses, view financial summaries, analyze spending by category,
 and maintain transaction history.
 </p>
-
-<hr>
 
 <h2>Features</h2>
 
@@ -33,8 +29,6 @@ and maintain transaction history.
     <li>Previous and Next Month Navigation</li>
 </ul>
 
-<hr>
-
 <h2> ⚒️ Technologies Used</h2>
 
 <ul>
@@ -42,8 +36,6 @@ and maintain transaction history.
     <li>CSS3</li>
     <li>JavaScript (ES6+)</li>
 </ul>
-
-<hr>
 
 <h2>Data Structures Used</h2>
 
@@ -67,8 +59,6 @@ is removed first using the LIFO (Last In First Out) principle.
 Each month's transactions are stored inside an Array.
 </p>
 
-<hr>
-
 <h2>Working</h2>
 
 <ol>
@@ -84,8 +74,6 @@ Each month's transactions are stored inside an Array.
     <li>Users can move between months using Previous Month and Next Month buttons.</li>
     <li>The Undo button removes the last added transaction.</li>
 </ol>
-
-<hr>
 
 <h2>License</h2>
 
